@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Imperial Travel Game</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f3f3f3;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      padding: 40px 20px;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      background-color: #d4af37;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #b78e2b;
+    }
+    .description {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .question {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .options {
+      margin: 10px 0;
+    }
+    .options button {
+      display: block;
+      margin: 10px auto;
+      width: 80%;
+    }
+    .result {
+      font-size: 20px;
+      color: green;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Imperial Travel Game</h1>
+    <p>The Interactive Family Adventure in Rome</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Intro Section -->
+    <div id="intro">
+      <div class="description">
+        Explore Rome with your family through real landmarks, secret missions, photo challenges and fun quizzes!
+      </div>
+      <button onclick="startGame()">Start Your Adventure</button>
+    </div>
+
+    <!-- Mission 1 -->
+    <div id="mission1" class="hidden">
+      <h2>Mission 1: Fontana di Trevi</h2>
+      <p>Go to the famous Trevi Fountain. Look around and find a triton (a sea god) riding a sea horse.</p>
+      <p>Take a fun photo with it!</p>
+      <button onclick="nextToQuiz()">Done! Next</button>
+    </div>
+
+    <!-- Quiz 1 -->
+    <div id="quiz1" class="hidden">
+      <h2>Quick Quiz</h2>
+      <p class="question">What happens when you throw a coin into the Trevi Fountain?</p>
+      <div class="options">
+        <button onclick="checkAnswer(true)">You’ll return to Rome</button>
+        <button onclick="checkAnswer(false)">You’ll find a treasure</button>
+        <button onclick="checkAnswer(false)">You’ll never leave Rome</button>
+      </div>
+      <div id="result" class="result hidden">Correct! Let’s go to the next mission!</div>
+    </div>
+
+  </div>
+
+  <script>
+    function startGame() {
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('mission1').classList.remove('hidden');
+    }
+
+    function nextToQuiz() {
+      document.getElementById('mission1').classList.add('hidden');
+      document.getElementById('quiz1').classList.remove('hidden');
+    }
+
+    function checkAnswer(isCorrect) {
+      const result = document.getElementById('result');
+      if (isCorrect) {
+        result.textContent = "Correct! Let’s go to the next mission!";
+        result.style.color = "green";
+      } else {
+        result.textContent = "Oops! Try again.";
+        result.style.color = "red";
+      }
+      result.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
